@@ -2,7 +2,7 @@ name: 部署到 GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build-and-deploy:
@@ -27,3 +27,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist   # 如果你的构建目录是 build，改成 ./build
+          force_orphan: true   # 强制用新的提交替换整个分支
