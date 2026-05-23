@@ -1,0 +1,53 @@
+/* ========================================
+   自定义主题
+   通过 html 上的 CSS class 覆盖 Element Plus 变量
+   使用方式：useTheme([{ name: 'xxx', className: 'theme-xxx' }])
+   ======================================== */
+
+/* ---- 蓝色主题 ---- */
+html.theme-blue {
+  --el-color-primary: #1677ff;
+  --el-color-primary-light-3: #4791ff;
+  --el-color-primary-light-5: #78abff;
+  --el-color-primary-light-7: #a9c6ff;
+  --el-color-primary-light-8: #c2d5ff;
+  --el-color-primary-light-9: #dae5ff;
+  --el-color-primary-dark-2: #0958d9;
+  color-scheme: light;
+}
+
+/* ---- 绿色主题 ---- */
+html.theme-green {
+  --el-color-primary: #389e0d;
+  --el-color-primary-light-3: #5bb72f;
+  --el-color-primary-light-5: #7ecf51;
+  --el-color-primary-light-7: #aee690;
+  --el-color-primary-light-8: #c7eeb0;
+  --el-color-primary-light-9: #dff6cf;
+  --el-color-primary-dark-2: #135200;
+  color-scheme: light;
+}
+
+/* ---- 橙色主题（深色变体） ---- */
+html.theme-orange-dark {
+  --el-color-primary: #fa8c16;
+  --el-color-primary-light-3: #ffa940;
+  --el-color-primary-light-5: #ffc069;
+  --el-color-primary-light-7: #ffd591;
+  --el-color-primary-light-8: #ffe0b0;
+  --el-color-primary-light-9: #ffecd0;
+  --el-color-primary-dark-2: #d46b08;
+
+  --el-bg-color: #141414;
+  --el-bg-color-page: #0a0a0a;
+  --el-bg-color-overlay: #1d1e1f;
+  --el-text-color-primary: #e5eaf3;
+  --el-text-color-regular: #cfd3dc;
+  --el-text-color-secondary: #a3a6ad;
+  --el-text-color-placeholder: #8d9095;
+  --el-fill-color-light: #262727;
+  --el-fill-color: #303030;
+  --el-border-color: #4c4d4f;
+
+  color-scheme: dark;
+}
