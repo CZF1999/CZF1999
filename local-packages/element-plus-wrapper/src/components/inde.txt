@@ -1,0 +1,23 @@
+0、<el-button ref="buttonRef" v-bind="mergedProps" @click="handleClick">
+    <slot />
+  </el-button>
+1、第一步先引入import { ref, computed, useAttrs } from "vue";  
+              import type { ButtonProps } from "element-plus";
+2、defineOptions({ name: "CzfButton", inheritAttrs: false })  默认根组件会自动继承 $attrs
+3、interface CzfButtonProps extends ButtonProps {  // 继承el-button的属性
+  confirmText?: string;
+  isConfirm?: boolean;
+  }
+4、const props = withDefaults(defineProps<Props>(), {
+  confirmText: "确定要执行吗？",
+  isConfirm: false,
+    });
+5、const attrs = useAttrs();
+6、const nativeProps = computed(() => {
+  const { confirmText, ...rest } = props;
+  return rest;
+});
+const mergedProps = computed(() => ({
+  ...nativeProps.value,
+  ...attrs,
+}));

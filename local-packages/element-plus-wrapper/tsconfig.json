@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "composite": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "types": ["element-plus/global"]
+  },
+  "include": [
+    "src",
+    "*.d.ts",
+    "src/**/*.vue",
+    "src/**/*.d.ts"
+  ]
+}

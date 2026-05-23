@@ -1,8 +1,8 @@
-name: Deploy 子项目 to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ master ]   # 或 main，改成你实际推送的分支
+    branches: [ master ]
 
 jobs:
   deploy:
@@ -13,29 +13,21 @@ jobs:
 
       - uses: pnpm/action-setup@v2
         with:
-          version: 8         # 改成你本地的 pnpm 大版本，如 8 或 9
+          version: 9
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'pnpm'
+          node-version: 20
 
-      # 只安装这个子项目需要的依赖
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --filter ./projects/你的文件夹名
+        run: pnpm install --frozen-lockfile
 
-      # 只构建这个子项目
       - name: Build
-        run: pnpm run build --filter ./projects/你的文件夹名
-        # 如果你的框架需要设置部署的基础路径，可以加在这里
-        # env:
-        #   VITE_BASE_URL: /你的仓库名/     （Vite 项目）
-        #   PUBLIC_URL: /你的仓库名         （Create React App）
+        run: pnpm run build
 
-      # 把构建产物部署到 gh-pages 分支
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./projects/你的文件夹名/dist   # 如果产物是 build，就改成 /build
+          publish_dir: ./dist
           force_orphan: true
