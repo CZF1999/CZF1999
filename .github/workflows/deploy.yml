@@ -1,30 +1,41 @@
-name: 部署到 GitHub Pages
+name: Deploy 子项目 to GitHub Pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master ]   # 或 main，改成你实际推送的分支
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: 设置 Node.js
-        uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8         # 改成你本地的 pnpm 大版本，如 8 或 9
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'pnpm'
 
-      - name: 安装依赖
-        run: npm ci   # 如果用 yarn 则改成 yarn install --frozen-lockfile
+      # 只安装这个子项目需要的依赖
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --filter ./projects/你的文件夹名
 
-      - name: 构建项目
-        run: npm run build   # 假设构建后输出到 dist 文件夹
+      # 只构建这个子项目
+      - name: Build
+        run: pnpm run build --filter ./projects/你的文件夹名
+        # 如果你的框架需要设置部署的基础路径，可以加在这里
+        # env:
+        #   VITE_BASE_URL: /你的仓库名/     （Vite 项目）
+        #   PUBLIC_URL: /你的仓库名         （Create React App）
 
-      - name: 部署到 GitHub Pages
+      # 把构建产物部署到 gh-pages 分支
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist   # 如果你的构建目录是 build，改成 ./build
-          force_orphan: true   # 强制用新的提交替换整个分支
+          publish_dir: ./projects/你的文件夹名/dist   # 如果产物是 build，就改成 /build
+          force_orphan: true
