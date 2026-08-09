@@ -1,0 +1,139 @@
+// ==================== 设计基准尺寸 ====================
+// 基准 1920×1080，1rem = 16px @设计稿
+// 通过 useScreenScale 动态设置 html font-size 实现等比缩放
+@design-width: 1920px;
+@design-height: 1080px;
+
+// ==================== 主题色 ====================
+@dashboard-bg: #f4f4f4;
+@panel-bg: #ffffff;
+@panel-border: rgba(30, 144, 255, 0.35);
+@panel-header-bg: linear-gradient(90deg, rgba(30, 144, 255, 0.2), transparent);
+
+@text-primary: #000000;
+@text-secondary: #000000;
+@text-accent: #000000;
+
+@color-info: #409eff;
+@color-warning: #e6a23c;
+@color-critical: #f56c6c;
+@color-success: #67c23a;
+
+// ==================== 字体（rem: px/16） ====================
+@font-xs: 0.75rem;     // 12
+@font-sm: 0.875rem;    // 14
+@font-md: 1rem;        // 16
+@font-lg: 1.25rem;     // 20
+@font-xl: 1.75rem;     // 28
+@font-xxl: 2.25rem;    // 36
+@font-number: 'DIN', 'Roboto Mono', 'Courier New', monospace;
+
+// ==================== 间距（rem: px/16） ====================
+@gap-xs: 0.25rem;      // 4
+@gap-sm: 0.5rem;       // 8
+@gap-md: 0.75rem;      // 12
+@gap-lg: 1rem;         // 16
+@gap-xl: 1.5rem;       // 24
+
+// ==================== 边框 ====================
+@border-radius: 0.25rem;    // 4
+@border-width: 0.0625rem;   // 1
+
+// ==================== 动画 ====================
+@transition-fast: 0.15s ease;
+@transition-normal: 0.3s ease;
+
+// ==================== 告警列表 ====================
+.alarm-list {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &__scroll {
+    height: 100%;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.25rem;   // 4
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(30, 144, 255, 0.3);
+      border-radius: 0.125rem;  // 2
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: @gap-sm @gap-md;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: @font-sm;
+    transition: background @transition-fast;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(30, 144, 255, 0.08);
+    }
+
+    &--info { border-left: 0.1875rem solid @color-info; }     // 3
+    &--warning { border-left: 0.1875rem solid @color-warning; } // 3
+    &--critical {
+      border-left: 0.1875rem solid @color-critical;            // 3
+      animation: alarm-flash 1s infinite;
+    }
+  }
+
+  &__time {
+    color: @text-secondary;
+    font-size: @font-xs;
+    white-space: nowrap;
+    margin-right: @gap-md;
+  }
+
+  &__device {
+    color: @text-primary;
+    margin-right: @gap-md;
+    white-space: nowrap;
+  }
+
+  &__message {
+    color: @text-secondary;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+@keyframes alarm-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+// ==================== 数据指标卡 ====================
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: @gap-md;
+
+  &__label {
+    color: @text-secondary;
+    font-size: @font-sm;
+    margin-bottom: @gap-xs;
+  }
+
+  &__value {
+    color: @text-accent;
+    font-size: @font-xl;
+    font-family: @font-number;
+    font-weight: 700;
+  }
+
+  &__unit {
+    color: @text-secondary;
+    font-size: @font-xs;
+    margin-left: 0.125rem;  // 2
+  }
+}

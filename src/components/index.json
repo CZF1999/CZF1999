@@ -1,0 +1,79 @@
+[
+  {
+    "id": "n8",
+    "type": "material_receive",
+    "label": "物料接收",
+    "config": {
+      "description": "",
+      "supplier": "",
+      "quantity": 0,
+      "unit": "件"
+    }
+  },
+  {
+    "id": "n9",
+    "type": "processing",
+    "label": "加工处理",
+    "config": {
+      "description": "",
+      "machine": "",
+      "duration": 60,
+      "operator": ""
+    }
+  },
+  {
+    "id": "n10",
+    "type": "quality_check",
+    "label": "质量检验",
+    "config": {
+      "description": "",
+      "standard": "",
+      "passRate": 100,
+      "duration": 30
+    }
+  },
+  {
+    "id": "n11",
+    "type": "assembly",
+    "label": "组装",
+    "config": {
+      "description": "",
+      "line": "",
+      "workers": 1,
+      "duration": 45
+    }
+  },
+  {
+    "id": "n12",
+    "type": "testing",
+    "label": "测试",
+    "config": {
+      "description": "",
+      "testCase": "",
+      "threshold": "",
+      "retry": 0
+    }
+  },
+  {
+    "id": "n13",
+    "type": "packaging",
+    "label": "包装",
+    "config": {
+      "description": "",
+      "material": "",
+      "spec": "",
+      "quantityPerBox": 0
+    }
+  },
+  {
+    "id": "n14",
+    "type": "warehousing",
+    "label": "入库",
+    "config": {
+      "description": "",
+      "warehouse": "",
+      "location": "",
+      "handler": ""
+    }
+  }
+]

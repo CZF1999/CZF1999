@@ -12,7 +12,17 @@ const router = createRouter({
       path: '/users',
       name: 'users',
       component: () => import('../views/Users.vue')
-    }
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('@/views/dashboard/DashboardView.vue'),
+    },
+    {
+      path: '/webrtc',
+      name: 'webrtc',
+      component: () => import('@/views/WebRTCView.vue'),
+    },
   ],
 })
 
